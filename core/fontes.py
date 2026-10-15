@@ -167,6 +167,9 @@ def parse_taxaswap(txt: str, curvas: Iterable[str] = CURVAS_B3) -> pd.DataFrame:
         except (ValueError, IndexError):
             continue
     df = pd.DataFrame(regs, columns=["curva", "dc", "du", "taxa", "vertice"])
+    # O 1º vértice (1 DU) de todas as curvas é a âncora do CDI overnight; na DIC (cupom de
+    # IPCA) ele não é taxa real e distorceria a interpolação → removido.
+    df = df[~((df["curva"] != "PRE") & (df["du"] <= 1))]
     return df.drop_duplicates(["curva", "du"]).sort_values(["curva", "du"]).reset_index(drop=True)
 
 
