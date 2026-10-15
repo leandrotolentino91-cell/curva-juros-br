@@ -1,0 +1,13 @@
+# Tema claro e escuro: o app segue o sistema do usuário; ele também pode trocar em ⋮ > Settings > Theme.
+[theme.light]
+primaryColor = "#2563EB"
+
+[theme.dark]
+primaryColor = "#60A5FA"
+
+[server]
+headless = true
+runOnSave = false
+
+[browser]
+gatherUsageStats = false
